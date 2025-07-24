@@ -1,6 +1,7 @@
 @extends('master')
+
 @section('content')
-      <section class="product-page-section">
+     <section class="product-page-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -24,7 +25,7 @@
                                 <div class="product__item-outer">
                                     <div class="product__item-image-outer">
                                         <a href="#" class="product__item-image-inner">
-                                            <img src="./assets/images/product.png" alt="Product Image" />
+                                            <img src="{{asset('/assets/images/product.png')}}" alt="Product Image" />
                                         </a>
                                         <div class="product__item-add-cart-btn-outer">
                                             <a href="#" class="product__item-add-cart-btn-inner">
@@ -56,7 +57,7 @@
                                 <div class="product__item-outer">
                                     <div class="product__item-image-outer">
                                         <a href="#" class="product__item-image-inner">
-                                            <img src="./assets/images/product.png" alt="Product Image" />
+                                            <img src="{{asset('/assets/images/product.png')}}" alt="Product Image" />
                                         </a>
                                         <div class="product__item-add-cart-btn-outer">
                                             <a href="#" class="product__item-add-cart-btn-inner">
@@ -88,7 +89,7 @@
                                 <div class="product__item-outer">
                                     <div class="product__item-image-outer">
                                         <a href="#" class="product__item-image-inner">
-                                            <img src="./assets/images/product.png" alt="Product Image" />
+                                            <img src="{{asset('/assets/images/product.png')}}" alt="Product Image" />
                                         </a>
                                         <div class="product__item-add-cart-btn-outer">
                                             <a href="#" class="product__item-add-cart-btn-inner">
@@ -120,7 +121,7 @@
                                 <div class="product__item-outer">
                                     <div class="product__item-image-outer">
                                         <a href="#" class="product__item-image-inner">
-                                            <img src="./assets/images/product.png" alt="Product Image" />
+                                            <img src="{{asset('/assets/images/product.png')}}" alt="Product Image" />
                                         </a>
                                         <div class="product__item-add-cart-btn-outer">
                                             <a href="#" class="product__item-add-cart-btn-inner">
@@ -152,7 +153,7 @@
                                 <div class="product__item-outer">
                                     <div class="product__item-image-outer">
                                         <a href="#" class="product__item-image-inner">
-                                            <img src="./assets/images/product.png" alt="Product Image" />
+                                            <img src="{{asset('/assets/images/product.png')}}" alt="Product Image" />
                                         </a>
                                         <div class="product__item-add-cart-btn-outer">
                                             <a href="#" class="product__item-add-cart-btn-inner">
@@ -185,5 +186,5 @@
                     </div>
                 </div>
             </div>
-        </section> 
+        </section>  
 @endsection

@@ -17,6 +17,13 @@ class FrontendController extends Controller
         return view('product-details');
     }
 
+
+     public function typeProduct()
+
+  {
+    return view ('type-products');
+  }
+
     public function shop()
     {
         return view('shop');
@@ -83,4 +90,6 @@ class FrontendController extends Controller
   {
     return view('contact-us');
   }
+
+ 
 }

@@ -31,7 +31,7 @@
 									</a>
 								</li>
 								<li class="footer__list-item">
-									<a href="{{url('/refund-policy')}}" class="footer__list-item-link">
+									<a href="{{url('/payment-policy')}}" class="footer__list-item-link">
 										Payment Policy
 									</a>
 								</li>

@@ -11,6 +11,6 @@
 	<!-- Main JS -->
 	<script src="{{asset('/assets/js/main.js')}}"></script>
 	
-	<script type="text/javascript">
+	<script type="{{asset('text/javascript')}}">
 		new WOW().init();
 	</script>
