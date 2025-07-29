@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -83,5 +84,7 @@ class CategoryController extends Controller
         $category->save();
         return redirect()->back();
     }
+
+   
 
 }

@@ -8,7 +8,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>General Form</h1>
+              <h1>Create Category</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -36,6 +36,7 @@
                 <form action="{{url('/admin/category/store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                   <div class="card-body">
+
                     <div class="form-group">
                       <label for="name">Category Name*</label>
                       <input type="text" class="form-control" name ="name" id="name" placeholder="Enter Category Name" required>
@@ -53,10 +54,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
+                    
                   </div>
                   <!-- /.card-body -->
 
