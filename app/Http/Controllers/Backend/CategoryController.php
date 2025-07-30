@@ -30,6 +30,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category ->name = $request->name;
         $category->slug = str::slug($request->name);
+       
         if(isset($request->image)){
          $imageName = rand().'-category-'.'.'.$request->image->extension();
          $request->image->move('backend/images/category',$imageName);

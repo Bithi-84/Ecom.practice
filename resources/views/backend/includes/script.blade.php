@@ -36,3 +36,6 @@
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
  <!-- bs-custom-file-input -->
   <script src="{{asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
+  <!-- Summernote -->
+<script src="{{asset('backend/plugins/summernote/summernote-bs4.min.js')}}"></script>
