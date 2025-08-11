@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\color;
 use App\Models\GalleryImage;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -92,4 +93,87 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function productList()
+    {
+        $products = Product::orderBy('id','desc')->with('category','subCategory')->get();
+        // dd($products);
+        return view('backend.product.list',compact('products'));
+    }
+
+
+    public function productDelete($id)
+    {
+        $product = Product::find($id);
+        $colors = color::where('product_id', $product->id)->get();
+        
+        // dd($color);
+        $sizes = size:: where('product_id', $product->id)->get();
+        $reviews = Review:: where('product_id', $product->id)->get();
+        $galleryImages = GalleryImage:: where('product_id', $product->id)->get();
+
+        if($product->image && file_exists('backend/images/product/'.$product->image))
+         
+       { unlink('backend/images/product/'.$product->image);
+      
+      }
+
+        $product->delete();
+
+        // Color Delete
+
+        if($colors->isNotEmpty()){
+           
+            foreach($colors as $color){
+                $color->delete();
+            }
+        }
+
+        // size Delete
+
+        if($sizes->isNotEmpty()){
+           
+            foreach($sizes as $size){
+                $size->delete();
+            }
+        }
+
+         // reviews Delete
+
+        if($reviews->isNotEmpty()){
+           
+            foreach($reviews as $review){
+                $review->delete();
+            }
+        }
+
+         // size Delete
+
+        if($galleryImages->isNotEmpty()){
+           
+            foreach($galleryImages as $image){
+            
+                 if($image->image && file_exists('backend/images/galleryImage/'.$image->image))
+         
+       { unlink('backend/images/galleryImage/'.$image->image);
+      
+      }
+
+                $image->delete();
+            }
+        }
+
+        return redirect()->back();
+    }
+
+    public function productEdit($id)
+{
+    $product = Product::where('id',$id)->with('color','size','galleryImage')->first();
+    // dd($product);
+    $categories = Category::get();
+    $subCategories = SubCategory::get();
+    return view ('backend.product.edit',compact('product','categories','subCategories'));
+}
+
+    
 }
