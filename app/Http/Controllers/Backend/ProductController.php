@@ -175,5 +175,120 @@ class ProductController extends Controller
     return view ('backend.product.edit',compact('product','categories','subCategories'));
 }
 
+public function productUpdate(Request $request,$id)
+{      
+
+        $product = Product::find($id);
+
+       
+
+      if(isset($request->image)){
+
+       if($product->image && file_exists('backend/images/product/'.$product->image))
+         
+       { unlink('backend/images/product/'.$product->image);
+      
+      }
+
+         $imageName = rand().'-product-'.'.'.$request->image->extension();
+         $request->image->move('backend/images/product',$imageName);
+         $product->image = $imageName;
+        }
+
+
+        if (isset($request->galleryImage)){
+
+            $images = GalleryImage::where('product_id', $product->id)->get();
+
+            if($images->isNotEmpty()){
+
+                 foreach($images as $singleImage){
+         
+               if($singleImage->image && file_exists('backend/images/galleryImage/'.$singleImage->image))
+         
+               { unlink('backend/images/galleryImage/'.$singleImage->image);
+      
+                }
+
+                $singleImage->delete();
+
+      }
+         
+
+            }
+
+        
+      foreach($request->galleryImage as $image){
+                $galleryImage = new GalleryImage();
+
+                $galleryImage->product_id = $product->id;
+
+                 $imageName = rand().'-galleryImage-'.'.'.$image->extension();
+                 $image->move('backend/images/galleryImage',$imageName);
+                 
+                 $galleryImage->image = $imageName;
+
+                 $galleryImage->save();
+            }
+        }
+
+
+         // add color....
+        if(isset($request->color) && $request->color[0] !=null){
+              $colors = color::where('product_id', $product->id)->get();
+             if($colors->isNotEmpty()){
+           
+            foreach($colors as $color){
+                $color->delete();
+            }
+        }
+           
+            foreach ($request->color as $color_name){
+            $color = new color();
+            $color-> product_id = $product->id;
+            $color-> color_name= $color_name;
+
+            $color->save();
+        }
+    }
+
+
+    // add size....
+
+        if(isset($request->size) && $request->size[0] !=null){
+             
+            $sizes = size:: where('product_id', $product->id)->get();
+             if($sizes->isNotEmpty()){
+           
+            foreach($sizes as $size){
+                $size->delete();
+            }
+        }
+             foreach ($request->size as $size_name){
+            $size = new size();
+            $size-> product_id = $product->id;
+            $size-> size_name= $size_name;
+
+            $size->save();
+        }
+        }
+
+        $product->name = $request->name;
+        $product->slug=str::slug ($request->name);
+        $product->cat_id= $request->cat_id;
+        $product->sub_cat_id = $request->sub_cat_id;
+        $product->sku_code= $request->sku_code;
+        $product->buying_price = $request->buying_price;
+        $product->regular_price = $request->regular_price;
+        $product->discount_price = $request->discount_price;
+        $product->qty = $request->qty;
+        $product->description= $request->description;
+        $product->policy= $request->policy;
+        $product->product_type= $request->product_type;
+
+        $product->save();
+        return redirect()->back();
+}
+
     
 }
