@@ -49,9 +49,9 @@
                                     <div class="form-group">
                                         <label for="name">Select Category*</label>
                                         <select name ="cat_id" class="form-control">
-                                            <option selected disable>Select Category</option>
+                                            <option selected disabled>Select Category</option>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}">{{$category->name}}</option>
                                             @endforeach
                                         </select>
 
@@ -59,11 +59,11 @@
 
 
                                       <div class="form-group">
-                                        <label for="name">Select SubCategory</label>
+                                        <label for="name">Select Sub-Category</label>
                                         <select name ="sub_cat_id" class="form-control">
-                                            <option selected disable>Select Category</option>
+                                            <option selected disabled>Select SubCategory</option>
                                             @foreach ($subCategories as $subcategory)
-                                                <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
+                                                <option value="{{ $subcategory->id }}">{{$subcategory->name}}</option>
                                             @endforeach
                                         </select>
 
@@ -71,34 +71,38 @@
                                          
                                       <div class="form-group" id="color_fields">
                                         <label for="name">Product Color (optional)</label>
-                                        <input type="text" class="form-control" name ="color[]" id="color"placeholder="Enter Product color" >
+                                       
+                                            <input type="text" class="form-control"  name ="color[]" id="color"placeholder="Enter Product color" >
+                                      
                                     </div>
                                     <botton type ="botton" class ="btn btn-primary" id ="add_color">Add More</botton>
 
                                     <div class="form-group" id="size_fields">
                                         <label for="name">Product Size (optional)</label>
-                                        <input type="text" class="form-control" name ="size[]" id="size"placeholder="Enter Product size" >
+                                       
+                                           <input type="text" class="form-control"  name ="size[]" id="size"placeholder="Enter Product size" > 
+                                       
                                     </div>
                                     <botton type ="botton" class ="btn btn-primary" id ="add_size">Add More</botton>
 
                                       <div class="form-group">
                                         <label for="name">Product Quantity*</label>
-                                        <input type="number" class="form-control" name ="qty" id="qty"placeholder="Enter Product qty Name" required>
+                                        <input type="number" class="form-control"  name ="qty" id="qty"placeholder="Enter Product qty Name" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="name">Product Buying price*</label>
-                                        <input type="number" class="form-control" name ="buying_price" id="buying_price"placeholder="Enter buying price" required>
+                                        <input type="number" class="form-control"  name ="buying_price" id="buying_price"placeholder="Enter buying price" required>
                                     </div>
 
                                      <div class="form-group">
                                         <label for="name">Product Regular Price*</label>
-                                        <input type="number" class="form-control" name ="regular_price" id="regular_price"placeholder="Enter regular price" required>
+                                        <input type="number" class="form-control"  name ="regular_price" id="regular_price"placeholder="Enter regular price" required>
                                     </div>
                                           
                                      <div class="form-group">
                                         <label for="name">Product Discount Price</label>
-                                        <input type="number" class="form-control" name ="discount_price" id="discount_price"placeholder="Enter discount price">
+                                        <input type="number" class="form-control"  name ="discount_price" id="discount_price"placeholder="Enter discount price">
                                     </div>
 
                                      <div class="form-group">
@@ -116,11 +120,14 @@
                                        <div class="form-group">
                                         <label for="name">Select Product Type*</label>
                                         <select name ="product_type" class="form-control">
-                                            <option selected disable>Select product type</option>
+                                            <option selected disabled>Select product type*</option>
                                             
                                              <option value="hot">Hot Products</option>
-                                             <option value="new">New Arrivals</option>
-                                             <option value="regular">Regular products</option>
+                                            
+                                             <option value="new" >New Arrivals</option>
+                                            
+                                             <option value="regular" >Regular products</option>
+                                             
                                              <option value="discount">Discount Products</option>
                                            
                                         </select>
@@ -153,6 +160,7 @@
                                                 <span class="input-group-text">Upload</span>
                                             </div>
                                         </div>
+
                                     </div>
 
                                 </div>

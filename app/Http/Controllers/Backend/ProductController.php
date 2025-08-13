@@ -97,7 +97,7 @@ class ProductController extends Controller
     public function productList()
     {
         $products = Product::orderBy('id','desc')->with('category','subCategory')->get();
-        // dd($products);
+        //  dd($products);
         return view('backend.product.list',compact('products'));
     }
 
