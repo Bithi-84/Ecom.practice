@@ -99,7 +99,7 @@
                                 <img src="{{ asset('backend/images/product/'.$product->image) }}" alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
-                                <a href="details.html" class="product__item-add-cart-btn-inner">
+                                <a href="{{url('add-to carts/'.$product->id)}}" class="product__item-add-cart-btn-inner">
                                     Add to Cart
                                 </a>
                             </div>
@@ -114,12 +114,18 @@
                                {{$product->name}}
                             </a>
                             <div class="product__item-price-outer">
-                                <div class="product__item-discount-price">
+                               @if ($product->discount_price != null)
+                                    <div class="product__item-discount-price">
                                     <del>{{$product->regular_price}}TK.</del>
                                 </div>
                                 <div class="product__item-regular-price">
                                     <span>{{$product->discount_price}}TK.</span>
                                 </div>
+                                @elseif ($product->discount_price == null)
+                                 <div class="product__item-regular-price">
+                                    <span>{{$product->regular_price}}TK.</span>
+                                </div>
+                               @endif
                             </div>
                         </div>
                     </div>
@@ -149,7 +155,7 @@
                                 <img src="{{ asset('backend/images/product/'.$product->image) }}" alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
-                                <a href="details.html" class="product__item-add-cart-btn-inner">
+                                <a href="{{url('add-to carts/'.$product->id)}}" class="product__item-add-cart-btn-inner">
                                     Add to Cart
                                 </a>
                             </div>
@@ -164,12 +170,18 @@
                                 {{$product->name}}
                             </a>
                             <div class="product__item-price-outer">
-                                <div class="product__item-discount-price">
+                                @if ($product->discount_price != null)
+                                    <div class="product__item-discount-price">
                                     <del>{{$product->regular_price}}</del>
                                 </div>
                                 <div class="product__item-regular-price">
                                     <span>{{$product->discount_price}}</span>
                                 </div>
+                                @elseif ($product->discount_price == null)
+                                <div class="product__item-regular-price">
+                                    <span>{{$product->regular_price}}</span>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -198,7 +210,7 @@
                                 <img src="{{ asset('backend/images/product/'.$product->image) }}" alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
-                                <a href="#" class="product__item-add-cart-btn-inner">
+                                <a href="{{url('add-to carts/'.$product->id)}}" class="product__item-add-cart-btn-inner">
                                     Add to Cart
                                 </a>
                             </div>
@@ -213,12 +225,18 @@
                                 {{$product->name}}
                             </a>
                             <div class="product__item-price-outer">
-                                <div class="product__item-discount-price">
+                                @if ($product->discount_price !=null)
+                                    <div class="product__item-discount-price">
                                     <del>{{$product->regular_price}}Tk.</del>
                                 </div>
                                 <div class="product__item-regular-price">
                                     <span>{{$product->discount_price}} Tk.</span>
                                 </div>
+                                @elseif ($product->discount_price ==null)
+                                 <div class="product__item-regular-price">
+                                    <span>{{$product->regular_price}} Tk.</span>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -249,7 +267,7 @@
                                 <img src="{{ asset('backend/images/product/'.$product->image) }}" alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
-                                <a href="details.html" class="product__item-add-cart-btn-inner">
+                                <a href="{{url('add-to carts/'.$product->id)}}" class="product__item-add-cart-btn-inner">
                                     Add to Cart
                                 </a>
                             </div>
@@ -264,12 +282,18 @@
                                {{$product->name}}
                             </a>
                             <div class="product__item-price-outer">
-                                <div class="product__item-discount-price">
-                                    <del>{{$product->regular_price}} Tk.</del>
+                                @if ($product->discount_price !=null)
+                                    <div class="product__item-discount-price">
+                                    <del>{{$product->regular_price}}Tk.</del>
                                 </div>
                                 <div class="product__item-regular-price">
                                     <span>{{$product->discount_price}} Tk.</span>
                                 </div>
+                                @elseif ($product->discount_price ==null)
+                                 <div class="product__item-regular-price">
+                                    <span>{{$product->regular_price}} Tk.</span>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
