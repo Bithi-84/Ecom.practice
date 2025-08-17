@@ -32,7 +32,7 @@ Route::get('/contact-us',[FrontendController::class,'contactUs']);
 
 // Carts Route.....
 Route::get('/add-to carts/{id}',[FrontendController::class,'addToCart']);
-
+Route::post('/add-to carts-details/{id}',[FrontendController::class,'addToCartDetails']);
 // Amin Login.....
 
 Route::get('admin/login',[AdminController::class,'adminLogin']);

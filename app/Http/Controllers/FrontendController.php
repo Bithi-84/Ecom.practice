@@ -26,7 +26,7 @@ class FrontendController extends Controller
     public function productDetails($slug)
     {
        $product = Product::with('color','size','galleryImage','review')->where('slug',$slug)->first();
-      //  dd($product);
+        // dd($product);
        $categories = Category::orderBy('id','desc')-> get();
         return view('product-details',compact('product','categories'));
     }
@@ -134,6 +134,48 @@ class FrontendController extends Controller
     }
     
     return redirect()->back();
+  }
+
+  public function addToCartDetails(Request $request,$id)
+  {
+     $cartProduct = Cart::where('product_id',$id)->where('ip_address',$request->ip())->orderBy('id','desc')->first();
+    $product = Product::find($id);
+
+    if($cartProduct == null){
+
+    $cart = new  Cart ();
+    $cart->ip_address = $request->ip();
+    $cart->product_id = $product->id;
+    $cart->qty = $request->qty;
+    $cart->color = $request->color;
+    $cart->size = $request->size;
+
+    If($product->discount_price == null){
+       $cart->price =  $product->regular_price;
+    }
+
+    If($product->discount_price != null){
+       $cart->price =  $product->discount_price;
+    }
+
+    $cart->save();
+
+    }
+
+    elseif($cartProduct != null){
+      $cartProduct->qty = $cartProduct->qty + $request->qty;
+      $cartProduct->color = $request->color;
+      $cartProduct->size = $request->size;
+      $cartProduct->save();
+    }
+
+    if($request->action == "addToCart"){
+      return redirect()->back();
+    }
+    
+    elseif($request->action == "buyNow"){
+      return redirect('/chechout');
+    }
   }
  
 }

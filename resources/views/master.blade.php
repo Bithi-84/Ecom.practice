@@ -19,5 +19,7 @@
 
 
 	@include('includes.script')
+
+	@stack('script')
 </body>
 </html>
