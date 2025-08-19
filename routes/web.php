@@ -34,6 +34,11 @@ Route::get('/contact-us',[FrontendController::class,'contactUs']);
 Route::get('/add-to carts/{id}',[FrontendController::class,'addToCart']);
 Route::post('/add-to carts-details/{id}',[FrontendController::class,'addToCartDetails']);
 Route::get('/cart-delete/{id}',[FrontendController::class,'addToCartDelete']);
+
+// order confarmation routes.....
+Route::post('/confirm-order',[FrontendController::class,'confirmOrder']);
+Route::get('/order-confirmed/{invoiceId}',[FrontendController::class,'orderConfirmed']);
+ 
 // Amin Login.....
 
 Route::get('admin/login',[AdminController::class,'adminLogin']);

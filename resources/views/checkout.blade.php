@@ -1,34 +1,39 @@
+{{-- @dd($cartProducts) --}}
+
+
 @extends('master')
 
 @section('content')
     <section class="checkout-section">
             <div class="container">
-                <form action="" method="post" class="form-group billing-address-form" enctype="multipart/form-data">
+                <form action="{{url('/confirm-order')}}" method="post" class="form-group billing-address-form" enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
+
                         <div class="col-lg-8 col-md-6">
                             <div class="checkout-wrapper">
                                 <div class="billing-address-wrapper">
                                     <h4 class="title">Billing / Shipping Details</h4>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" name="name" class="form-control" placeholder="Enter Full Name *"/>
+                                            <input type="text" name="name" class="form-control" placeholder="Enter Full Name *" required/>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="phone" class="form-control" placeholder="Phone *"/>
+                                            <input type="text" name="phone" class="form-control" placeholder="Phone *" required/>
                                         </div>
                                         <div class="col-md-12">
                                             <textarea rows="4" name="address" class="form-control" id="address"
-                                                placeholder="Enter Full Address"></textarea>
+                                                placeholder="Enter Full Address" required></textarea>
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <div style="background: lightgrey;padding: 10px;margin-bottom: 10px;">
-                                                <input type="radio" id="inside_dhaka" name="area" value="80"/>
+                                                <input type="radio" id="inside_dhaka" name="area" value="80" onclick = "grandTotal()" checked/>
                                                 <label for="inside_dhaka"
                                                     style="font-size: 18px;font-weight: 600;color: #000;">Inside Dhaka (80
                                                     Tk.)</label>
                                             </div>
                                             <div style="background: lightgrey;padding: 10px;">
-                                                <input type="radio" id="outside_dhaka" name="area" value="150"/>
+                                                <input type="radio" id="outside_dhaka" name="area" value="150"  onclick = "grandTotal()"/>
                                                 <label for="outside_dhaka"
                                                     style="font-size: 18px;font-weight: 600;color: #000;">Outside Dhaka (150
                                                     Tk.)</label>
@@ -40,7 +45,14 @@
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout-items-wrapper">
+                                <?php
+                                    $subTotal = 0;
+                                    ?>
                                 @foreach ( $cartProducts as $cart)
+
+                                <?php
+                                $subTotal = $subTotal + $cart->qty*$cart->price
+                                ?>
                                     <div class="checkout-item-outer">
                                     <div class="checkout-item-left">
                                         <div class="checkout-item-image">
@@ -85,7 +97,7 @@
                                 <div class="sub-total-wrap">
                                     <div class="sub-total-item">
                                          <strong>Sub Total</strong>
-                                        <strong id="subTotal">৳ 300</strong>
+                                        <strong id="subTotal">৳ {{$subTotal}}</strong>
                                     </div>
                                     <div class="sub-total-item">
                                         <strong>Delivery charge</strong>
@@ -93,7 +105,7 @@
                                     </div>
                                     <div class="sub-total-item grand-total">
                                          <strong>Grand Total</strong>
-                                         <strong id="grandTotal">৳ 380</strong>
+                                         <strong id="grandTotal">৳ {{$subTotal +80}}</strong>
                                     </div>
                                 </div>
                                 <div class="payment-item-outer">
@@ -122,3 +134,11 @@
             </div>
         </section>	
 @endsection
+
+@push('script')
+    <script>
+        function grandTotal(){
+
+        }
+    </script>
+@endpush
