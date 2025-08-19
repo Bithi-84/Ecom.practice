@@ -8,20 +8,24 @@
                 <div class="home__slider-sec-wrap">
                     <div class="home__category-outer">
                         <ul class="header__category-list">
-                            <li class="header__category-list-item item-has-submenu">
-                                <a href="{{ url('/category-products') }}" class="header__category-list-item-link">
-                                    <img src="{{ asset('/assets/images/product.png') }}" alt="category">
-                                    Test Category
+                            @foreach ($categoriesGlobal as $category )
+                                <li class="header__category-list-item item-has-submenu">
+                                <a href="{{ url('category-products/'.$category->id) }}" class="header__category-list-item-link">
+                                    <img src="{{asset('backend/images/category/'.$category->image)}}" alt="category">
+                                    {{$category->name}}
                                 </a>
                                 <ul class="header__nav-item-category-submenu">
-                                    <li class="header__category-submenu-item">
-                                        <a href="{{ url('/subcategory-products') }}"
+                                   @foreach ($category->subCategory as $subCat )
+                                        <li class="header__category-submenu-item">
+                                        <a href="{{ url('subcategory-products/'.$subCat->id)}}"
                                             class="header__category-submenu-item-link">
-                                            Test Subcategory
+                                            {{$subCat->name}}
                                         </a>
                                     </li>
+                                   @endforeach
                                 </ul>
                             </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="home__slider-items-wrapper">
@@ -45,7 +49,7 @@
                 </div>
                 <div class="categoris-items-wrapper owl-carousel">
                     @foreach ($categories as $category )
-                        <a href="{{ url('/category-products') }}" class="categoris-item">
+                        <a href="{{ url('category-products/'.$category->id) }}" class="categoris-item">
                         <img src="{{ asset('backend/images/category/'.$category->image) }}" alt="category" />
                         <h6 class="categoris-name">
                             {{$category->name}}
@@ -87,7 +91,7 @@
                     <h1 class="title">
                         Hot Products
                     </h1>
-                    <a href="{{ url('/type-products') }}" class="product-view-all-btn">
+                    <a href="{{ url('/type-products/hot') }}" class="product-view-all-btn">
                         View All
                     </a>
                 </div>
@@ -95,8 +99,8 @@
                    @foreach ($hotProducts as $product )
 					 <div class="product__item-outer">
                         <div class="product__item-image-outer">
-                            <a href="{{ url('product-details/'.$product->slug) }}" class="product__item-image-inner">
-                                <img src="{{ asset('backend/images/product/'.$product->image) }}" alt="Product Image" />
+                            <a href="{{ url('product-details/'.$product->slug)}}" class="product__item-image-inner">
+                                <img src="{{ asset('backend/images/product/'.$product->image)}}" alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
                                 <a href="{{url('add-to carts/'.$product->id)}}" class="product__item-add-cart-btn-inner">
@@ -143,7 +147,7 @@
                     <h1 class="title">
                         New Arrival
                     </h1>
-                    <a href="{{ url('/type-products') }}" class="product-view-all-btn">
+                    <a href="{{ url('/type-products/new') }}" class="product-view-all-btn">
                         View All
                     </a>
                 </div>
@@ -198,7 +202,7 @@
                     <h1 class="title">
                         Regular Products
                     </h1>
-                    <a href="{{ url('/type-products') }}" class="product-view-all-btn">
+                    <a href="{{ url('/type-products/regular') }}" class="product-view-all-btn">
                         View All
                     </a>
                 </div>
@@ -207,7 +211,7 @@
 						<div class="product__item-outer">
                         <div class="product__item-image-outer">
                             <a href="{{ url('product-details/'.$product->slug) }}" class="product__item-image-inner">
-                                <img src="{{ asset('backend/images/product/'.$product->image) }}" alt="Product Image" />
+                                <img src="{{ asset('backend/images/product/'.$product->image)}}" alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
                                 <a href="{{url('add-to carts/'.$product->id)}}" class="product__item-add-cart-btn-inner">
@@ -254,7 +258,7 @@
                     <h1 class="title">
                         Discount Products
                     </h1>
-                    <a href="{{ url('/type-products') }}" class="product-view-all-btn">
+                    <a href="{{ url('/type-products/discount') }}" class="product-view-all-btn">
                         View All
                     </a>
                 </div>

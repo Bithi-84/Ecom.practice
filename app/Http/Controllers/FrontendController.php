@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -32,15 +33,19 @@ class FrontendController extends Controller
     }
 
 
-     public function typeProduct()
+     public function typeProduct($type)
 
-  {
-    return view ('type-products');
+  {  
+    $products = Product::where('product_type',$type)->get();
+    // dd($products);
+    $productsCount = Product::where('product_type',$type)->count();
+    return view ('type-products',compact('products','type','productsCount'));
   }
 
     public function shop()
-    {
-        return view('shop');
+    {  $products = Product::orderBy('id','desc')->get();
+       $productsCount = Product::count();
+       return view('shop',compact('products',('productsCount')));
     }
 
     public function returnProcess()
@@ -50,20 +55,33 @@ class FrontendController extends Controller
 
     }
 
-    public function categoryProducts()
-    {
-        return view('category-products');
+    public function categoryProducts($id)
+              
+
+    { $category = Category::find($id);
+      
+      $products = Product::where('cat_id',$id)->get();
+
+      // dd($products);
+      $productsCount = Product::where('cat_id',$id)->count();
+        return view('category-products',compact('products','category','productsCount'));
     }
    
-    public function subcategoryProducts()
+    public function subcategoryProducts($id)
 
-    {
-        return view ('subcategory-products');
+    { $subCategory = SubCategory::find($id);
+      
+      $products = Product::where('sub_cat_id',$id)->get();
+
+      // dd($products);
+      $productsCount = Product::where('sub_cat_id',$id)->count();
+      return view ('subcategory-products',compact('products','subCategory','productsCount'));
     }
 
     public function viewCart()
 
    {
+    
      return view('view-cart');
    }
 
@@ -177,5 +195,14 @@ class FrontendController extends Controller
       return redirect('/chechout');
     }
   }
- 
+
+  public function addToCartDelete($id)
+  
+  {
+    $cart = Cart::find($id);
+
+    $cart->delete();
+
+    return redirect()->back();
+  }
 }

@@ -14,11 +14,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
  Route::get('/product-details/{slug}',[FrontendController::class,'productDetails']);
  Route::get('/shop',[FrontendController::class,'shop']);
  Route::get('/return-process',[FrontendController::class,'returnProcess']);
- Route::get('/category-products',[FrontendController::class,'categoryProducts']);
- Route::get('/subcategory-products',[FrontendController::class,'subcategoryProducts']);
+ Route::get('/category-products/{id}',[FrontendController::class,'categoryProducts']);
+ Route::get('/subcategory-products/{id}',[FrontendController::class,'subcategoryProducts']);
  Route::get('/view-cart',[FrontendController::class,'viewCart']);
  Route::get('/checkout',[FrontendController::class,'checkOut']);
- Route::get('/type-products',[FrontendController::class,'typeProduct']);
+ Route::get('/type-products/{type}',[FrontendController::class,'typeProduct']);
 
 
 //  policy Pages....
@@ -33,6 +33,7 @@ Route::get('/contact-us',[FrontendController::class,'contactUs']);
 // Carts Route.....
 Route::get('/add-to carts/{id}',[FrontendController::class,'addToCart']);
 Route::post('/add-to carts-details/{id}',[FrontendController::class,'addToCartDetails']);
+Route::get('/cart-delete/{id}',[FrontendController::class,'addToCartDelete']);
 // Amin Login.....
 
 Route::get('admin/login',[AdminController::class,'adminLogin']);
