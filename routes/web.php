@@ -37,7 +37,7 @@ Route::get('/cart-delete/{id}',[FrontendController::class,'addToCartDelete']);
 
 // order confarmation routes.....
 Route::post('/confirm-order',[FrontendController::class,'confirmOrder']);
-Route::get('/order-confirmed/{invoiceId}',[FrontendController::class,'orderConfirmed']);
+Route::get('/order-confirmed/{invoiceId}',[FrontendController::class,'thankYou']);
  
 // Amin Login.....
 

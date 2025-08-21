@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -215,12 +216,16 @@ class FrontendController extends Controller
 
     if($previousOrder == null){
 
-      $order->invoiceId = "xyz-1";
+      $generateInvoice ="xyz-1";
+
+      $order->invoiceId = $generateInvoice;
 
     }
 
     else{
-      $order->invoiceId = "xyz-".$previousOrder->Id+1;
+
+      $generateInvoice = "xyz-".$previousOrder->Id+1;
+      $order->invoiceId = $generateInvoice;
 
     }
 
@@ -229,10 +234,42 @@ class FrontendController extends Controller
     $order->address = $request->address;
     $order->area = $request->area;
     $order->price = $request->grandTotalHidden;
-    
-    $order->save();
 
-    return redirect()->back();
+    $cartProducts =Cart:: where('ip_address',$request->ip())->get();
+    // dd($cartProducts);
+
+    if($cartProducts->isNotEmpty()){
+     $order->save();
+
+     foreach($cartProducts as $cart){
+
+      $orderDetails = new OrderDetails();
+
+      $orderDetails->order_id = $order->id;
+      $orderDetails->product_id = $cart->product_id;
+      $orderDetails->size = $cart->size;
+      $orderDetails->color= $cart->color;
+      $orderDetails->qty = $cart->qty;
+      $orderDetails->price = $cart->price;
+
+      $orderDetails->save();
+
+      $cart->delete();
+
+     }
+    }
+
+    else{
+       return redirect()->back();
+    }
+    
+
+    return redirect('order-confirmed/'.$generateInvoice);
+  }
+
+  public function thankYou($invoiceId)
+  {
+     return view ('thankyou',compact('invoiceId'));
   }
 
 }
