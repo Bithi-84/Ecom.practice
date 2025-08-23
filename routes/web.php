@@ -19,6 +19,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
  Route::get('/view-cart',[FrontendController::class,'viewCart']);
  Route::get('/checkout',[FrontendController::class,'checkOut']);
  Route::get('/type-products/{type}',[FrontendController::class,'typeProduct']);
+ Route::get('/search-products',[FrontendController::class,'searchProduct']);
 
 
 //  policy Pages....
